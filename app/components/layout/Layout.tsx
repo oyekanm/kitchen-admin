@@ -3,6 +3,7 @@ import SideNav from "./SideNav";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { LoginButton } from "../auth/buttons.components";
+import { redirect } from "next/navigation";
 
 type Props = {
   children: React.ReactNode;
@@ -14,6 +15,7 @@ export default async function Layout ({ children }: Props)  {
   
 
   if (!session) {
+//  return   redirect("/auth/signin?callbackurl=/products")
     return (
       <LoginButton />
     );
