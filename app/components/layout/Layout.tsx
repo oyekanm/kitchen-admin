@@ -15,9 +15,10 @@ export default async function Layout ({ children }: Props)  {
   
 
   if (!session) {
-//  return   redirect("/auth/signin?callbackurl=/products")
     return (
-      <LoginButton />
+      <section className="min-h-screen w-full flex items-center justify-center">
+        <LoginButton />
+      </section>
     );
   }
 

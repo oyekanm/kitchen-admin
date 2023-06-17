@@ -1,10 +1,10 @@
 import clientPromise from "@/lib/mongodb";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-import NextAuth from "next-auth"
+import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 
 
-export const authOptions = {
+export const authOptions= {
  // Configure one or more authentication providers
  providers: [
   GoogleProvider({
@@ -14,12 +14,15 @@ export const authOptions = {
   
 // ...add more providers here
 ],
+session: { strategy: "jwt" },
 pages:{
-  signIn:'/auth/signin',
+//   signIn:'/auth/signin',
+// newUser: '/settings'
 },
 adapter: MongoDBAdapter(clientPromise),
+
 callbacks: {
-  // async signIn(user, account, profile) {
+  // async signIn(user, account, profile?) {
   //   console.log({user, account, profile});
     
   //   return true
@@ -27,11 +30,35 @@ callbacks: {
   // async redirect(url, baseUrl) {
   //   return baseUrl
   // },
-  // async session(session, user) {
+  // async session(session) {
+  //   session.
+    
   //   return session
   // },
   // async jwt(token, user, account, profile, isNewUser) {
+  //   console.log({token, user, account, profile, isNewUser});
+    
   //   return token
+  // }
+  async jwt({ token, user }) {
+    // console.log({ ...token, ...user });
+    
+    return { ...token, ...user };
+  },
+
+  async session({ session, token }) {
+    session.user = token as any;
+    session.house = "mine"
+    // console.log(session);
+    
+    return session;
+  },
+},
+events:{
+  // signin:({user,account,profile,isNewUser}) =>{
+  //   console.log({newUser: JSON.stringify( isNewUser)});
+  //   // console.log({user,account,profile,isNewUser});
+    
   // }
 }
 
