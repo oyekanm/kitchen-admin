@@ -4,7 +4,6 @@ import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import Link from "next/link";
 
 import { Bg, Colors } from "../components/Color";
-import { Suspense } from "react";
 import Swal from "sweetalert2";
 import { DeleteCate, DeleteFood } from "../_actions";
 

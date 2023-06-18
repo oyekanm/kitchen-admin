@@ -16,10 +16,11 @@ type Category = {
 
 
 interface User {
-  _id?: String,
-  name?: String,
-  email?: String,
-  image?: String,
+  _id?: string,
+  name?: string,
+  email?: string,
+  image?: string,
   emailVerified?: Date,
-  role?:String
+  role?:string
+  __v?: number;
 }
