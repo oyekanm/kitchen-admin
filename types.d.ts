@@ -13,3 +13,13 @@ type Category = {
   name?: string;
   __v?: number;
 };
+
+
+interface User {
+  _id?: String,
+  name?: String,
+  email?: String,
+  image?: String,
+  emailVerified?: Date,
+  role?:String
+}

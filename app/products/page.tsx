@@ -15,15 +15,12 @@ import { getCategory } from "@/lib/Fetch/Category";
 // export const revalidate = 0;
 
 export default async function products() {
-  // const products = await getProduct("http://localhost:3000/api/product")
   const headersList = headers();
   const domain = headersList.get("host");
   const products = await getProduct(`${http}://${domain}/api/products`);
-  // const categories =  getCategory(`${http}://${domain}/api/categories`);
 
   // const [products, category] = await Promise.all([product,categories])
-  // console.log(products);
-  // console.log(category);
+ 
 
   return (
     <>

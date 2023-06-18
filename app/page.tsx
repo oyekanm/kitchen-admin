@@ -8,7 +8,7 @@ export default async function Home() {
     // if (status === "loading") {
     //   return <p>Loading....</p>;
     // }
-// console.log("session :",session?.house);
+// console.log("session :",session);
 
   return (
     <>
