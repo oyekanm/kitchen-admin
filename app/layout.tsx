@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className="bg-gray-100 ">
           {/* @ts-expect-error Async Server Component */}
           <Layout>
-            <>{children}</>
+            <>{children}</> 
           </Layout>
       </body>
     </html>

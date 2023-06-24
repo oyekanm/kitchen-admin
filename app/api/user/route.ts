@@ -36,4 +36,26 @@ export async function GET(request: Request) {
   //  console.log(data);
 
   return NextResponse.json(data);
+} 
+
+export async function PUT(request: Request) {
+  const res = await request.json();
+  const email = res.email
+
+  
+  await mongooseConnect();
+  
+  // const data = await Users.findOne({ email });
+  // console.log(data);
+
+ 
+
+  try {
+  const update =  await Users.updateOne({email},{role : "ADMIN"});
+  return NextResponse.json({ update });
+  } catch (error) {
+    console.log(error);
+  }
+
+  
 }

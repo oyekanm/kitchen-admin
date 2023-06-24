@@ -1,47 +1,70 @@
 "use client";
 
-import React, { useState } from "react";
-import { Colors } from "../components/Color";
-import Delete from "../components/Delete";
+import React, { useRef, useState } from "react";
+import { Bg, Colors } from "../components/Color";
+import SelectBtn from "./SelectBtn";
+import { headers } from "next/headers";
+import { UpdateUserAdmin } from "../_actions";
 
 type Params = {
   admins: User[] | undefined;
 };
 
 export default function AdminList({ admins }: Params) {
-  const [List] = useState(["ADMIN", "USER"]);
+const formRef = useRef<any>()
+  const filterAdmin = admins?.filter((admin) => admin?.role === "ADMIN");
+
+  // console.log(filterAdmin);
+  const action = async (data: FormData) => {
+    UpdateUserAdmin(data);
+    formRef?.current?.reset()
+  };
+
   return (
     <>
-      {admins &&
-        admins?.map((admin) => {
-          return (
-            <div key={admin._id} className="grid grid-cols-3 sm:grid-cols-[2fr_1fr_1fr] py-2 items-center">
-              <p className={`${Colors.primary} text-[2rem] font-bold`}>
-                {admin.email}
-              </p>
-              <select
-                name="role"
-                id="role"
-                value={admin.role}
-                className="w-[50%] focus-visible:outline-none"
+      <form action={action} ref={formRef} className="my-[3rem]">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Add user email (eg) example@gmail.com"
+          className="p-4 py-6 w-full mb-8 text-[1.6rem] font-semibold placeholder:text-[1.5rem]"
+        />
+        <button
+          type="submit"
+          className={`flex shadow-xl bg-blue-400 items-center  capitalize  p-3 px-8 text-[1.8rem] font-semibold`}
+        >
+          add new admin
+        </button>
+      </form>
+      <section>
+        <div className="bg-slate-400 p-4">
+          <p
+            className={`text-[2rem] uppercase font-semibold ${Colors.primary}`}
+          >
+            admin user{filterAdmin && filterAdmin.length > 1 ? "s" : ""}
+          </p>
+        </div>
+
+        <div className={`mt-4 ${Bg.white} px-4 py-4 shadow-lg`}>
+          {filterAdmin?.map((admin) => {
+            return (
+              <div
+                key={admin._id}
+                className={`grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] py-2 items-center ${
+                  filterAdmin && filterAdmin.length > 1 && "my-4"
+                }`}
               >
-                {List.map((list) => {
-                  return (
-                    <option key={list} value={list}>
-                      {list}
-                    </option>
-                  );
-                })}
-              </select>
-              <div className="sm:flex items-center justify-between">
-                <span className="bg-slate-500 capitalize shadow p-3 px-8 text-[1.8rem] mb-16">edit</span>
-                <span className="flex items-center bg-red-300 text-red-700 capitalize shadow p-3 px-8 text-[1.8rem]">
-                  remove
-                </span>
+                <p className={`${Colors.primary} text-[2rem] font-bold`}>
+                  {admin?.email}
+                </p>
+
+                <SelectBtn roles={admin?.role} />
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </section>
     </>
   );
 }

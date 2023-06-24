@@ -2,14 +2,14 @@
 
 import { useEffect, useState, useRef } from "react";
 import { sendConsole } from "../_actions";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 type Params = {
   singleName?: Category;
 };
 export default function Form({ singleName }: Params) {
   const [name, setName] = useState<string | undefined>("");
-  const route = useRouter();
+  // const route = useRouter();
   const inputRef = useRef<any>();
   async function action(data: FormData) {
     if (singleName?._id) {
@@ -59,7 +59,7 @@ export default function Form({ singleName }: Params) {
     </div> */}
       <button
         type="submit"
-        className="text-[1.8rem] bg-blue-400 font-bold p-4 px-8 mt-4 uppercase rounded-md"
+        className="text-[1.8rem] bg-blue-400 font-bold p-4 px-24 mt-4 shadow-xl uppercase rounded-md"
       >
         save
       </button>

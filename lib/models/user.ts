@@ -20,7 +20,7 @@ const usersSchema = new Schema({
     name: String,
     email: String,
     image: String,
-    emailVerified: Date,
+    emailVerified: Date, 
     role:{
         type:String,
         enum:userRole,

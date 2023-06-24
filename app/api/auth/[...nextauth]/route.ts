@@ -2,13 +2,7 @@ import { http } from "@/app/layout";
 import clientPromise from "@/lib/mongodb";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import axios from "axios";
-import NextAuth, {
-  Account,
-  NextAuthOptions,
-  Profile,
-  Session,
-} from "next-auth";
-import { JWT } from "next-auth/jwt";
+import NextAuth, { Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { headers } from "next/headers";
 
@@ -31,57 +25,57 @@ export const authOptions = {
 
   callbacks: {
     async signIn(user: any) {
-      // console.log(user.user.id);
-      const headersList = headers();
-      const domain = headersList.get("host");
-      const users: User = await axios
-        .get(`${http}://${domain}/api/user?id=${user.user.id}`)
-        .then((response) => {
-          return response.data;
-        });
-      if (!users.role) {
-        console.log("none");
-        await axios
-          .put(`${http}://${domain}/api/user/${user.user.id}`)
-          .then((response) => {
-            //
-            console.log(response.data);
-            return response.data;
-          });
-      }
       if (!user) {
         return false;
       }
       return true;
     },
 
-    async jwt({ token }: { token: JWT }) {
+    async jwt({ token }: { token: any }) {
       const headersList = headers();
       const domain = headersList.get("host");
-      const users: User = await axios
-        .get(`${http}://${domain}/api/user?email=${token.email}`)
-        .then((response) => {
-          return response.data;
-        });
+      // console.log(token);
+      if (token) {
+        const users: User = await axios
+          .get(`${http}://${domain}/api/user?email=${token.email}`)
+          .then((response) => {
+            return response.data;
+          });
+        // console.log(token.role);
 
-      return {
-        id: users._id,
-        name: users.name,
-        email: users.email,
-        image: users.image,
-        emailVerified: users.emailVerified,
-        role: users.role,
-      };
+        return {
+          id: users?._id,
+          name: users?.name,
+          email: users?.email,
+          image: users?.image,
+          emailVerified: users?.emailVerified,
+          role: users?.role,
+        };
+      }
     },
 
-    async session({ session, token }: { session: Session; token: any }) {
+    async session({
+      session,
+      user,
+      token,
+    }: {
+      session: Session;
+      user: any;
+      token: any;
+    }) {
       if (token) {
         session.user = token;
       }
-
+      if (!token) {
+        session.user = user;
+      }
       // console.log(session);
 
-      return session;
+      if (session.user.role === "ADMIN") {
+        return session;
+      }
+
+      return null;
     },
   },
   events: {

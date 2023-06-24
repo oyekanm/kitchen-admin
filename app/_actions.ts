@@ -79,6 +79,13 @@ export async function DeleteCate(data?: string) {
 
     revalidatePath(`/categories`)
 }
+export async function UpdateUserAdmin(data: FormData) {
+  const email = data.get("email");
+  // console.log(email);
+  await axios.put(`${http}://${domain}/api/user`,{email})
+    
+  revalidatePath(`/products`)
+}
 export async function DeleteFood(data?: string) {
   // console.log(data);
   axios

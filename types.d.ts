@@ -21,6 +21,6 @@ interface User {
   email?: string,
   image?: string,
   emailVerified?: Date,
-  role?:string
+  role?:string,
   __v?: number;
 }
