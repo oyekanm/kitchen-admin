@@ -19,6 +19,10 @@ const productSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref:"Category"
   },
+  image:{
+    type:[{}],
+    required:true
+  }
 });
 
 const Product = models.Product || model("Product", productSchema);

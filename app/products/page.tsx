@@ -1,8 +1,5 @@
 // "use client";
 
-import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-import axios from "axios";
-import React, { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { headers } from "next/headers";
 
@@ -10,7 +7,6 @@ import { Bg, Colors } from "../components/Color";
 import ListFoods from "./list-foods";
 import { getProduct } from "@/lib/Fetch/Products";
 import { http } from "../layout";
-import { getCategory } from "@/lib/Fetch/Category";
 
 // export const revalidate = 0;
 

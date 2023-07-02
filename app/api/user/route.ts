@@ -21,7 +21,6 @@ export async function GET(request: Request) {
     }
   }
 
-
   if (id) {
     try {
       const data = await Users.findOne({ _id: id });
@@ -36,26 +35,34 @@ export async function GET(request: Request) {
   //  console.log(data);
 
   return NextResponse.json(data);
-} 
+}
 
 export async function PUT(request: Request) {
-  const res = await request.json();
-  const email = res.email
+let email;
 
-  
-  await mongooseConnect();
-  
-  // const data = await Users.findOne({ email });
-  // console.log(data);
+  const url = new URL(request.url);
 
- 
-
-  try {
-  const update =  await Users.updateOne({email},{role : "ADMIN"});
-  return NextResponse.json({ update });
-  } catch (error) {
-    console.log(error);
+  const _id = url.searchParams.get("_id");
+  if(!_id){
+    const res = await request?.json();
+    email = res.email;
   }
 
-  
+  await mongooseConnect();
+
+  if (_id) {
+    try {
+      const update = await Users.updateOne({ _id }, { role: "USER" });
+      return NextResponse.json({ update });
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    try {
+      const update = await Users.updateOne({ email }, { role: "ADMIN" });
+      return NextResponse.json({ update });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }

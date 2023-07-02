@@ -4,7 +4,10 @@ type Foods = {
   desc?: string;
   price?: number;
   category?: string;
-  image?: string[] | null;
+  image?: {
+    url: string;
+    id: string;
+}[] ;
   __v?: number;
 };
 

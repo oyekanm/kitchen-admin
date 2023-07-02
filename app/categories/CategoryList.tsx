@@ -54,11 +54,11 @@ export default function CategoryList({category}:Params) {
                   <div className="flex gap-12">
                     <Link
                       href={`/categories/edit/${cate._id}`}
-                      className={`flex items-center capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold ${Colors.primary}`}
+                      className={`flex cursor-pointer items-center capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold ${Colors.primary}`}
                     >
                       edit
                     </Link>
-                    <span onClick={()=>deleteFunc(cate)} className="flex items-center bg-red-300 text-red-700 capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold">
+                    <span onClick={()=>deleteFunc(cate)} className="flex cursor-pointer items-center bg-red-300 text-red-700 capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold">
                       delete
                     </span>
                   </div>

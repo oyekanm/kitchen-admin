@@ -11,6 +11,7 @@ import {
 } from "react-icons/ai";
 import { BiLogOut, BiCategory } from "react-icons/bi";
 import { HiOutlineUserGroup } from "react-icons/hi";
+import Logo from "./Logo";
 
 export default function SideNav() {
   const route = usePathname();
@@ -25,9 +26,7 @@ export default function SideNav() {
     <aside className="sm:w-[35%] md:w-[30%] h-full p-8 px-8  ">
      <div className=" md:fixed top-[2rem] left-[2rem] ">
      <div className="pb-4">
-        <p className="text-[2rem] text-[rgba(0,0,0,.5)] font-bold">
-          ZaybResturantAdmin
-        </p>
+       <Logo/>
       </div>
       <Link
         className={`${NavClass} ${

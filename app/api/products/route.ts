@@ -34,10 +34,10 @@ export async function POST(request: Request) {
 
   await mongooseConnect();
 
-  const { category,  desc, name, price } :Partial<Foods>  = res;
+  const { category,  desc, name, price,image } :Partial<Foods>  = res;
  
   try {
-    await Product.create({ category,  desc, name, price });
+    await Product.create({ category,  desc, name, price,image });
   } catch (error) {
     console.log(error);
   }
@@ -52,10 +52,10 @@ export async function PUT(request: Request) {
   
   await mongooseConnect();
 
-  const { category,  desc, name, price,_id, } :Partial<Foods>  = res;
+  const { category,  desc, name, price,_id,image } :Partial<Foods>  = res;
 
   try {
-    await Product.updateOne({_id},{category,  desc, name, price });
+    await Product.updateOne({_id},{category,  desc, name, price, image });
   } catch (error) {
     console.log(error);
   }

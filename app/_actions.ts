@@ -11,8 +11,8 @@ const domain = headersList.get("host");
 
 // const ref = headersList.get("referer");
 
-export async function FoodSend(data: Partial<Foods>, _id?: string) {
-  // console.log(http);
+export async function FoodSend(data: Foods, _id?: string) {
+  // console.log(data);
   if (_id) {
     await axios
       .put(
@@ -40,7 +40,7 @@ export async function FoodSend(data: Partial<Foods>, _id?: string) {
         console.log(err);
       });
   }
-  revalidatePath("/products");
+  // revalidatePath("/products");
 }
 
 export async function sendConsole(data: FormData, id?: string) {
@@ -84,7 +84,11 @@ export async function UpdateUserAdmin(data: FormData) {
   // console.log(email);
   await axios.put(`${http}://${domain}/api/user`,{email})
     
-  revalidatePath(`/products`)
+  revalidatePath(`/admins`)
+}
+export async function revalidate(data: string) {
+    
+  revalidatePath(data)
 }
 export async function DeleteFood(data?: string) {
   // console.log(data);

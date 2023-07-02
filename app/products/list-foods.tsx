@@ -53,14 +53,14 @@ export default function ListFoods({ products }: Params) {
                 <div className="flex gap-12">
                   <Link
                     href={`/products/edit/${food._id}`}
-                    className={`flex items-center  capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold ${Colors.primary}`}
+                    className={`flex cursor-pointer items-center  capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 text-[1.8rem] font-semibold ${Colors.primary}`}
                   >
                     <span className="mr-2">
                       <AiOutlineEdit />
                     </span>
                     edit
                   </Link>
-                  <span onClick={()=>deleteFunc(food)} className="flex items-center bg-red-300 text-red-700 capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 font-semibold text-[1.8rem]">
+                  <span onClick={()=>deleteFunc(food)} className="flex cursor-pointer items-center bg-red-300 text-red-700 capitalize shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-3 px-12 font-semibold text-[1.8rem]">
                     <span className="mr-2">
                       <AiOutlineDelete />
                     </span>

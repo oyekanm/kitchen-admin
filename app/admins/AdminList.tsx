@@ -51,7 +51,7 @@ const formRef = useRef<any>()
             return (
               <div
                 key={admin._id}
-                className={`grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] py-2 items-center ${
+                className={`shadow-[0_5px_15px_rgba(0,0,0,0.4)] p-8 my-4 sm:shadow-none sm:grid grid-cols-2 sm:grid-cols-[2fr_1fr_1fr] py-2 items-center ${
                   filterAdmin && filterAdmin.length > 1 && "my-4"
                 }`}
               >
@@ -59,7 +59,7 @@ const formRef = useRef<any>()
                   {admin?.email}
                 </p>
 
-                <SelectBtn roles={admin?.role} />
+                <SelectBtn roles={admin?.role} admin={admin}/>
               </div>
             );
           })}
