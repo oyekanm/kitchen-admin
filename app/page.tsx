@@ -1,12 +1,7 @@
 import { Colors } from "./components/Color";
 
 export default async function Home() {
-  // const session = await getServerSession(authOptions);
 
-    // if (status === "loading") {
-    //   return <p>Loading....</p>;
-    // }
-// console.log("session :",session);
 
   return (
     <>
