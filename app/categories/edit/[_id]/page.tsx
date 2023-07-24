@@ -1,20 +1,16 @@
 import React from "react";
 import Form from "../../Form";
-import { headers } from "next/headers";
 import axios from "axios";
 import { Colors } from "@/app/components/Color";
-import { http } from "@/app/layout";
 
 type Params = {
   params: { _id: string };
 };
 
 export default async function EditPage({ params: { _id } }: Params) {
-  const headersList = headers();
-  const domain = headersList.get("host");
 
   const category: Category = await axios
-    .get(`${http}://${domain}/api/categories?id=${_id}`)
+    .get(`${process.env.NEXT_URL}/api/categories?id=${_id}`)
     .then((res) => res.data);
 
   // console.log(category);

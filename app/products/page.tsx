@@ -1,19 +1,15 @@
 // "use client";
 
 import Link from "next/link";
-import { headers } from "next/headers";
 
 import { Bg, Colors } from "../components/Color";
 import ListFoods from "./list-foods";
 import { getProduct } from "@/lib/Fetch/Products";
-import { http } from "../layout";
 
 // export const revalidate = 0;
 
 export default async function products() {
-  const headersList = headers();
-  const domain = headersList.get("host");
-  const products = await getProduct(`${http}://${domain}/api/products`);
+  const products = await getProduct(`${process.env.NEXT_URL}/api/products`);
 
   // const [products, category] = await Promise.all([product,categories])
  

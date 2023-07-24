@@ -1,16 +1,10 @@
 import { getCategory } from "@/lib/Fetch/Category";
 import Form from "./Form";
-import { headers } from "next/headers";
 import { Bg, Colors } from "../components/Color";
-import Link from "next/link";
 import CategoryList from "./CategoryList";
-import { http } from "../layout";
 
 export default async function Category() {
-  const headersList = headers();
-  const domain = headersList.get("host"); 
-
-  const category = await getCategory(`${http}://${domain}/api/categories`);
+  const category = await getCategory(`${process.env.NEXT_URL}/api/categories`);
 
   // console.log(category);
 

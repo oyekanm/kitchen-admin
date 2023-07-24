@@ -1,14 +1,10 @@
-import { headers } from "next/headers";
 import React from "react";
-import { http } from "../layout";
 import { getAdmins } from "@/lib/Fetch/Admins";
 import AdminList from "./AdminList";
 import {  Colors } from "../components/Color";
 
 export default async function Admin() {
-  const headersList = headers();
-  const domain = headersList.get("host");
-  const admins = await getAdmins(`${http}://${domain}/api/user`);
+  const admins = await getAdmins(`${process.env.NEXT_URL}/api/user`);
 
   // console.log(admins);
 
