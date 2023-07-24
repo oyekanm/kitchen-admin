@@ -1,22 +1,18 @@
-import { getServerSession } from "next-auth";
 import { Colors } from "./components/Color";
-import { authOptions } from "./api/auth/[...nextauth]/route";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  // const session = await getServerSession(authOptions);
 
     // if (status === "loading") {
     //   return <p>Loading....</p>;
     // }
-console.log("session :",session);
+// console.log("session :",session);
 
   return (
     <>
       <div>
-        <p className="text-[1.8rem]">
-          Hello{" "}
-          <span className="font-bold">{session?.user?.name}</span>
-        </p>
+        <p className="text-[1.8rem] font-bold ">
+          Welcome </p>
       </div>
       <section>
         <div className="mt-8">

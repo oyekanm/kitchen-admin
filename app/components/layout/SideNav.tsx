@@ -13,7 +13,11 @@ import { BiLogOut, BiCategory } from "react-icons/bi";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import Logo from "./Logo";
 
-export default function SideNav() {
+type Props = {
+  showNav: Boolean
+}
+
+export default function SideNav({showNav}:Props) {
   const route = usePathname();
   const NavClass = `flex items-center py-4 capitalize 
   text-[2rem] `;
@@ -27,7 +31,7 @@ export default function SideNav() {
      <div className=" md:fixed top-[2rem] left-[2rem] ">
      <div className="pb-4">
        <Logo/>
-      </div>
+    </div>
       <Link
         className={`${NavClass} ${
           route==="/" ? `${NavClassActive}` : `${NavClassInActive}`

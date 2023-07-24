@@ -3,22 +3,22 @@ const nextConfig = {
   experimental: {
     // appDir: true,
     serverComponentsExternalPackages: ["mongoose"],
-    serverActions:true
+    serverActions: true,
   },
-    images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'lh3.googleusercontent.com',
-            port: '',
-            // pathname: '/account123/**',
-          },
-        ],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        // pathname: '/account123/**',
       },
-      webpack(config) {
-        config.experiments = { ...config.experiments, topLevelAwait: true }
-        return config
-      },
-}
+    ],
+  },
+  webpack(config) {
+    config.experiments = { ...config.experiments, topLevelAwait: true };
+    return config;
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
